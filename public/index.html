@@ -704,26 +704,6 @@
     `;
     document.head.appendChild(style);
 
-    // 真实在线人数 mcsrvstat 方案二
-    async function getServerStatus() {
-        const onlineEl = document.getElementById("onlineNum");
-        try {
-            const host = "agmc.top";
-            const apiRes = await fetch(`https://api.mcsrvstat.us/2/${host}`);
-            const stat = await apiRes.json();
-            if (stat.online) {
-                onlineEl.innerText = `${stat.players.online} / ${stat.players.max}`;
-            } else {
-                onlineEl.innerText = "服务器离线 / 120";
-            }
-        } catch (err) {
-            onlineEl.innerText = "查询失败 / 120";
-            console.error("服务器在线人数接口请求失败：", err);
-        }
-    }
-    getServerStatus();
-    setInterval(getServerStatus, 30000);
-
     const infoCards = Array.from(document.querySelectorAll(".info-card"));
     const cardObserver = new IntersectionObserver((entries)=>{
         entries.forEach(entry=>{
