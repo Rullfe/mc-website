@@ -623,11 +623,10 @@
 </div>
 
 <div class="section">
-    <h2 class="section-title">🔗 站点导航</h2>
+    <h2 class="section-title">🔗 友情链接</h2>
     <div class="msg-area">
         <div class="link-wrap">
-            <a href="https://agmc.de5.cd" target="_blank" class="friend-link">Aurora Galaxy官网</a>
-            <a href="https://wiki.agmc.de5.cd" target="_blank" class="friend-link">Aurora Galaxy Wiki</a>
+            <a href="https://agmc.top" target="_blank" class="friend-link">Aurora Galaxy官网</a>
             <a href="http://wiki.ags-cf.ccwu.cc" target="_blank" class="friend-link">Aurora Galaxy Wiki（社区版）</a>
         </div>
         <p style="margin-top:1rem;color:#acc;font-size:0.9rem;">如需交换友链，请前往服务器QQ群联系管理申请</p>
@@ -797,13 +796,13 @@
         })
     });
 
-    // API域名更新为 worker.agmc.de5.cd
+    // API域名更新为 worker.agmc.de5.net
     loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const fd = new FormData(loginForm);
         const data = Object.fromEntries(fd);
         try {
-            const res = await fetch("https://worker.agmc.de5.cd/api/login", {
+            const res = await fetch("https://worker.agmc.de5.net/api/login", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
@@ -831,7 +830,7 @@
         }
         delete data.repwd;
         try {
-            const res = await fetch("https://worker.agmc.de5.cd/api/register", {
+            const res = await fetch("https://worker.agmc.de5.net/api/register", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
