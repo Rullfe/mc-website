@@ -1,0 +1,9 @@
+name = "mc-server-api"
+main = "src/index.js"
+compatibility_date = "2026-08-10"
+
+[env.production]
+route = "worker.agmc.de5.cd/*"
+kv_namespaces = [
+  { binding = "USER_DB", id = "5da9fce651644142b63111a30df94091" }
+]
