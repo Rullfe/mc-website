@@ -49,8 +49,8 @@
             100% { transform: translate(-30%, -30%); }
         }
 
-        /* 图片轮播模块 */
-        .carousel-wrap{
+        /* ========== 修复后的图片轮播模块 ========== */
+        .carousel-wrap {
             width: 94%;
             max-width: 1100px;
             margin: 0 auto 3rem;
@@ -59,39 +59,57 @@
             border: 2px solid rgba(120,200,255,0.25);
             box-shadow: 0 0 30px rgba(100,180,255,0.12);
             position: relative;
+            /* 固定16:9比例，杜绝高度塌陷空白 */
+            aspect-ratio: 16 / 9;
         }
-        .carousel-box{
+        .carousel-box {
             display: flex;
             width: 300%;
-            animation: slideLoop 20s linear infinite;
-            will-change: transform;
+            height: 100%;
+            animation: slideLoop 15s infinite ease-in-out;
         }
-        .carousel-item{
+        .carousel-item {
+            /* 强制每张占满容器宽度，禁止压缩重叠 */
+            flex: 0 0 100%;
             width: 100%;
+            height: 100%;
         }
-        .carousel-item img{
+        .carousel-item img {
             width: 100%;
+            height: 100%;
             display: block;
             object-fit: cover;
+            object-position: center;
         }
-        @keyframes slideLoop{
-            0%{transform: translateX(0);}
-            30%{transform: translateX(0);}
-            33%{transform: translateX(-100%);}
-            63%{transform: translateX(-100%);}
-            66%{transform: translateX(-200%);}
-            96%{transform: translateX(-200%);}
-            100%{transform: translateX(0);}
+        /* 正确动画，三张完整切换无空白 */
+        @keyframes slideLoop {
+            0%, 25% {
+                transform: translateX(0);
+            }
+            33%, 58% {
+                transform: translateX(-100%);
+            }
+            66%, 92% {
+                transform: translateX(-200%);
+            }
+            100% {
+                transform: translateX(0);
+            }
         }
-        .carousel-dots{
+        /* 鼠标悬停暂停滚动 */
+        .carousel-wrap:hover .carousel-box {
+            animation-play-state: paused;
+        }
+        .carousel-dots {
             position: absolute;
             bottom: 16px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
+            z-index: 9;
         }
-        .dot{
+        .dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -495,6 +513,7 @@
     <p>Minecraft互通服务器｜Java版+基岩版全版本兼容｜1.21.11 Fabric核心</p>
 </div>
 
+<!-- 轮播HTML结构无改动，仅CSS修复 -->
 <div class="carousel-wrap">
   <div class="carousel-box">
     <div class="carousel-item">
@@ -535,7 +554,6 @@
     <div class="info-card">
         <h3>✨ 服务器特色</h3>
         <p>Java/基岩双端互通</p>
-        <p>全游戏版本均可进入</p>
         <p>游戏版本限制1.18~26.1.2</p>
         <p>24小时稳定在线</p>
     </div>
@@ -627,6 +645,7 @@
         <div class="link-wrap">
             <a href="https://agmc.top" target="_blank" class="friend-link">Aurora Galaxy官网</a>
             <a href="http://wiki.ags-cf.ccwu.cc" target="_blank" class="friend-link">Aurora Galaxy Wiki（社区版）</a>
+            <a href="https://www.bilibili.com/video/BV1GJ411x7h7/" target="_blank" class="friend-link">腐竹福利</a>
         </div>
         <p style="margin-top:1rem;color:#acc;font-size:0.9rem;">如需交换友链，请前往服务器QQ群联系管理申请</p>
     </div>
@@ -829,4 +848,4 @@
     });
 </script>
 </body>
-    </html>
+</html>
